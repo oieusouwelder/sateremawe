@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang= "pt-br">
+<head>
+	<title>Aprendendo Sateré Mawé</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<link rel = "icon" href =
+"https://cdn.iconscout.com/icon/premium/png-512-thumb/quiz-18-831952.png"
+        type = "image/x-icon">
+	<link rel="stylesheet" href="css/style.css1">
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap');
+	background-image: url(img/background1.png);
+html {
+    background-image: url(img/background1.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed fixed;
+    background-size: cover;
+    height: 100%;
+    font-family: 'Helvetica';
+    overflow: hidden;
+    -webkit-user-select: none;
+}
+body{
+	margin: 0;
+	font-size: 16px;
+	
+	font-family: "Montserrat", sans-serif;
+	font-weight: 400;
+}
+
+*{
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	outline: none;
+}
+
+.custome-box{
+	max-width: 700px;
+	background-color: #ffffff ;
+	margin:40px auto;
+	padding: 30px;
+	border-radius: 10px;
+	animation: fadeInRight 1s ease;
+}
+footer{
+	color: white;
+}
+@keyframes fadeInRight{
+	0%{
+		transform: translateX(40px);
+		opacity: 0;
+	}
+	100%{
+		transform: translateX(0px);
+		opacity: 1;
+	}
+}
+
+.custome-box::before,
+.custome-box::after
+{
+	content: '';
+	clear: both;
+	display: table;
+
+}
+.custome-box.hide{
+	display: none;
+
+}
+
+.home-box h2{
+	font-size: 18px;
+	/* font-color: #000000; FIX */
+	color: #000000;
+	font-weight: 500;
+	margin-bottom: 15px;
+	line-height: 25px;
+
+}
+.home-box p{
+	font-size: 16px;
+	margin-bottom: 10px;
+	line-height: 22px;
+	color: #000000;
+	font-weight: 400;
+}
+
+.home-box p span{
+	font-weight: 500;
+
+}
+
+.home-box btn{
+	margin-top: 20px;
+
+}
+
+.btn{
+	padding: 15px 45px;
+	background-color: #009688;
+	color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	cursor: pointer;
+	display: inline-block;
+
+}
+
+.quiz-box .question-no,
+.quiz-box .question-text,
+.quiz-box .opt-container,
+.quiz-box .next-question-btn,
+.quiz-box .ans-indicator{
+	width: 100%;
+	float: left;
+
+}
+
+
+.quiz-box .question-no{
+	font-size:	18px;
+	font-weight: 600;
+	border-bottom: 1px solid #cccccc;
+	padding-bottom:  10px;
+	color: #009688;
+	line-height: 25px;
+	margin: 0;
+}
+
+.quiz-box .question-text{
+	font-size: 22px;
+	color: #000000;
+	line-height: 28px;
+	font-weight: bold 400;
+	padding: 20px 0;
+}
+
+.quiz-box .opt-container{
+	cursor: pointer;
+}
+
+.quiz-box .opt-container .option{
+	background-color:  #cccccc;
+	padding:13px 15px;
+	font-size: 16px;
+	line-height: 22px;
+	color: #000000;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	text-transform: capitalize;
+	opacity: 0;
+	animation: fadeIn 0.3s ease forwards;
+	position: relative;
+	overflow: hidden;
+}
+.quiz-box .opt-container .option.already-answered{
+	pointer-events: none;
+}
+
+@keyframes fadeIn{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+.quiz-box .opt-container .option.correct::before{
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: green;
+	z-index: -1;
+	animation: slideInLeft .5s ease forwards
+}
+@keyframes slideInLeft{
+	0%{
+		transform: translateX(-100%);
+	}
+	100%{
+		transform: translateX(0%);
+	}
+}
+.quiz-box .opt-container .option.wrong::before{
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: red;
+	z-index: -1;
+	animation: slideInLeft .5s ease forwards
+}
+
+.quiz-box .opt-container .option.correct{
+	color: white;
+}
+.quiz-box .opt-container .option.wrong{
+	color: white;
+}
+
+.quiz-box .btn{
+	margin: 15px 0;
+}
+
+.quiz-box .ans-indicator{
+	 border-top: 1px solid #cccccc;
+}
+.quiz-box .ans-indicator div{
+	height: 40px;
+	width: 40px;
+	display: inline-block;
+	background: #cccccc;
+	border-radius: 50%;
+	margin-right: 3px;
+	margin-top: 15px;
+}
+.quiz-box .ans-indicator div.correct{
+	background-color: green;
+	background-image: url("../img/correct.png");
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.quiz-box .ans-indicator div.wrong{
+	background-color: red;
+	background-image: url("../img/wrong.png");
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+
+.result-box{
+	text-align: center;
+}
+.result-box.hide{
+	display: none;
+}
+.result-box h1{
+	font-size: 36px;
+	line-height: 42px;
+	color: #009688;
+}
+.result-box table{
+	width: 100%;
+	border-collapse: collapse;
+	margin: 30px 0;
+}
+.result-box table td{
+	border: 1px solid #cccccc;
+	padding: 8px 15px;
+	font-weight: 500;
+	color: #000000;
+	width: 50%;
+	text-align: left;
+	font-size: 18px;
+}
+
+.result-box .btn{
+	margin-right: 20px;
+}
+
+@media (max-width: 767px){
+	.result-box .btn{
+		margin-bottom: 15%;
+	}
+	.buttom{
+		animation: piscar .75s infinite alternate;
+
+	}
+	body{
+		padding: 15%;
+		}
+}
+</style>
+</head>
+
+<body>
+	<html lang= "pt-br">
+	<div class="home-box custome-box ">
+		<h1 align="center">Bem vindo ao mundo<br/> Sateré Mawé!</h1>
+		<br/>
+		<h2><b>Nível Básico</b></h2>
+		<p>Numero total de questões: <span class="total-question">20</span></p>
+
+		<br/>
+		<button type="button" class="btn" onclick="startQuiz()">Iniciar Quiz</button>
+	</div>
+
+	<div class="quiz-box custome-box hide">
+		<div class="question-no">
+
+		</div>
+		<div class="question-text">
+
+		</div>
+		<div class="opt-container">
+
+		</div>
+		<div class="next-question-btn">
+			<button type="button" class="btn" onclick="window.location.reload()" style="color: white;">Voltar</a></button>
+			<button type="button" class="btn" onclick="next()">Próxima</button>
+		</div>
+		<div class="ans-indicator">
+
+
+		</div>
+
+	</div>
+
+	<div class="result-box custome-box hide">
+		<h1>Resultado do Quiz</h1>
+		<table>
+			<tr>
+				<td>Total de Questões</td>
+				<td><span class="tot-question"></span></td>
+			</tr>
+			<tr>
+				<td>Tentativas</td>
+				<td><span class="tot-attempt"></span></td>
+			</tr>
+			<tr>
+				<td>Corretas</td>
+				<td><span class="tot-correct"></span></td>
+			</tr>
+			<tr>
+				<td>Erradas</td>
+				<td><span class="tot-wrong"></span></td>
+			</tr>
+			<tr>
+				<td>Porcentagem</td>
+				<td><span class="tot-percentage"></span></td>
+			</tr>
+			<tr>
+				<td>Seu Score Total</td>
+				<td><span class="tot-score"></span></td>
+			</tr>
+
+		</table>
+		<button type="button" class="btn" onclick="tryAgainQuiz()">Tente Novamente</button>
+		<button type="button" class="btn" onclick="goToHome()">Ir para Inicio</button>
+	</div>
+
+
+	<script>
+		const questionNumber = document.querySelector(".question-no");
+const questionText = document.querySelector(".question-text");
+const optionsContainer = document.querySelector(".opt-container");
+const answerIndicatorContainer = document.querySelector(".ans-indicator");
+const homeBox = document.querySelector(".home-box");
+const quizBox = document.querySelector(".quiz-box");
+const resultBox = document.querySelector(".result-box");
+const name = document.querySelector(".name");
+
+let questionCounter=0;
+let currentQuestion;
+let availableQuestions = [];
+let availableOptions = [];
+let correctAnswers = 0;
+let attempt = 0;
+
+//Push the quetions into availableQuestions array
+function setAvailableQuestions(){
+	const totalQuestions=quiz.length;
+	for(let i=0;i<totalQuestions; i++){
+		availableQuestions.push(quiz[i])
+	}
+}
+
+//set question number and question and options
+function getNewQuestion(){
+ 	//set question number
+ 	questionNumber.innerHTML="Questão "+(questionCounter+1)+" de 20";
+
+ 	//set question text
+ 	// fetch a random question
+ 	const questionIndex = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+ 	currentQuestion=questionIndex;
+ 	questionText.innerHTML=currentQuestion.q;
+
+ 	//get the position of 'questionIndex' from the avaible questions array;
+ 	const index1=availableQuestions.indexOf(questionIndex);
+ 	//remove the 'questionIndex' from the avaibaleQuestion array,so the question won't repeate again
+ 	availableQuestions.splice(index1,1);
+
+
+ 	//set Options
+ 	//fetch the length of the options
+ 	const optionLen= currentQuestion.options.length;
+ 	//push options in availableOptions array
+ 	for(let i=0; i<optionLen; i++){
+ 		availableOptions.push(i)
+ 	}
+
+ 	optionsContainer.innerHTML='';
+ 	let animationDelay = 0.15;
+	//create options in HTML
+	for(let i=0;i<optionLen; i++){
+		//random option
+		const optionIndex = availableOptions[Math.floor(Math.random() * availableOptions.length)];
+		//get the position of 'OptionIndex' from the availableOptions
+		const index2= availableOptions.indexOf(optionIndex);
+		//removes the 'optionIndex' from the availableOptions, so that option does not repeat
+		availableOptions.splice(index2,1);
+
+
+
+		const option = document.createElement("div");
+		option.innerHTML=currentQuestion.options[optionIndex];
+		option.id=optionIndex;
+		option.style.animationDelay = animationDelay+'s';
+		animationDelay=animationDelay+0.15;
+		option.className="option";
+		optionsContainer.appendChild(option);
+		option.setAttribute("onclick","getResult(this)");
+	}
+
+ 	questionCounter++
+}
+
+//fetch the result of current attempt question
+function getResult(element){
+	const id = parseInt(element.id);
+	//fetch the answer by comparing the id of clicked option
+	if (id === currentQuestion.answer){
+		//set the green color to the correct option
+		element.classList.add("correct");
+		// add the indicator correct mark
+		updateAnswerIndicator("correct");
+		correctAnswers++;
+		console.log("correct:"+correctAnswers)
+	}
+	else{
+		//set the red color to the wrong option
+		element.classList.add("wrong");
+		// add the indicator wrong mark
+		updateAnswerIndicator("wrong");
+
+		// if the answer is incorrect, show the correct option
+		const optionLen = optionsContainer.children.length;
+		for(let i=0; i<optionLen; i++){
+			if(parseInt(optionsContainer.children[i].id) === currentQuestion.answer){
+				optionsContainer.children[i].classList.add("correct");
+			}
+		}
+	}
+	attempt++;
+	unclickableOptions();
+}
+
+// Restrict the user to select an option, when once selected
+function unclickableOptions() {
+	// body...
+	const optionLen = optionsContainer.children.length;
+	for(let i=0;i<optionLen; i++){
+		optionsContainer.children[i].classList.add("already-answered");
+	}
+}
+
+
+function answerIndicator(){
+	answerIndicatorContainer.innerHTML = '';
+	const totalQuestions = quiz.length;
+	for(let i=0; i<20; i++){
+		const indicator = document.createElement("div");
+		answerIndicatorContainer.appendChild(indicator);
+	}
+}
+function updateAnswerIndicator(markType){
+	answerIndicatorContainer.children[questionCounter-1].classList.add(markType)
+}
+
+
+function next(){
+	if(questionCounter===20){
+		console.log("Quiz Over!");
+		quizOver();
+	}
+	else{
+		getNewQuestion();
+	}
+}
+
+
+function quizOver(){
+	// hide quiz box
+	quizBox.classList.add("hide");
+	//show result box
+	resultBox.classList.remove("hide");
+	quizResult();
+}
+
+function quizResult(){
+
+	resultBox.querySelector(".tot-question").innerHTML = 20;
+	resultBox.querySelector(".tot-attempt").innerHTML =attempt;
+	resultBox.querySelector(".tot-correct").innerHTML = correctAnswers;
+	resultBox.querySelector(".tot-wrong").innerHTML = attempt- correctAnswers;
+	const percentage =  (correctAnswers/20)*100;
+	resultBox.querySelector(".tot-percentage").innerHTML = percentage.toFixed(2) + "%";
+	resultBox.querySelector(".tot-score").innerHTML = correctAnswers+" / 20";
+}
+
+
+
+function startQuiz(){
+	// hide home box
+	homeBox.classList.add("hide");
+	// shows quiz box
+	quizBox.classList.remove("hide" );
+
+	//First we will set all questions in avaibleQuestins array
+	setAvailableQuestions();
+	//Secondly we will call getNewQuestion() function
+	getNewQuestion();
+	// to create answer indicators
+	answerIndicator();
+}
+
+function resetQuiz(){
+	questionCounter=0;
+	correctAnswers = 0;
+	attempt = 0;
+}
+function tryAgainQuiz(){
+	// hide the result box
+	resultBox.classList.add("hide");
+	// removes the quiz box
+	quizBox.classList.remove("hide");
+	resetQuiz();
+	startQuiz();
+
+}
+function goToHome(){
+	// hide result box
+	resultBox.classList.add("hide");
+	// removes the quiz box
+	homeBox.classList.remove("hide");
+	resetQuiz();
+}
+function rEload()
+{
+
+	quizBox.classList.add("hide");
+
+	homeBox.classList.remove("hide");
+	resetQuiz();
+}
+
+
+	</script>
+	<script>
+
+//Array of objects(qustions)
+
+
+const quiz =[
+{
+	q:'Qual a tradução correta de CRIANÇA?',
+	options:['Hike','Hirokat','Hire','Hiromi'],
+	answer:1
+},
+{
+	q:'Qual a tradução correta de PAPAGAIO?',
+	options:['Ahut','Ahū','Ahit','Ahupit'],
+	answer:0
+},
+{
+	q:'Qual a tradução correta do verbo CONFIAR?',
+	options:['Moherep','Moheg','Mohit','Mohey'],
+	answer:3
+},
+{
+	q:'Qual a tradução correta de CANOA?',
+	options:['Yat','Yahig','Yara','Yawa'],
+	answer:2
+},
+{
+	q:'Qual a tradução correta de CASA?',
+	options:["Ne'i",'Neran',"Nei'o",'Netap'],
+	answer:3
+},
+{
+	q:"Qual a tradução correta do verbo FURAR?",
+	options:["Hot","Hu'at","Hot'ok",'Hune'],
+	answer:0
+},
+{
+	q:"Qual a tradução correta da palavra ARANHA?",
+	options:["Kiã","Kiru","Kisi","Kyt"],
+	answer:0
+},
+{
+	q:"Qual a tradução correta da palavra CACHORRO?",
+	options:["Awati","Awi'a","Aware","Awyky"],
+	answer:2
+},
+{
+	q:"Qual a tradução correta da palavra PAI?",
+	options:["Ȳwot","Ywyk","Ywyt","Ywop"],
+	answer:0
+},
+{
+	q:"Qual a tradução correta da palavra MORTE?",
+	options:["Ikahuro","Ikahu","Ikuap","Gu'uro"],
+	answer:3
+},
+{
+	q:"Da a idéia de futuro do passado. Ex:(Eu ia)",
+	options:["Hamo","Hamuat","Irane","Aru"],
+	answer:2
+},
+{
+	q:"Qual a tradução correta do verbo FAZER?",
+	options:["Nug","Tum","Mīum","Ium"],
+	answer:0
+},
+{
+	q:"Qual a tradução correta da palavra ANO?",
+	options:["Akasa","Akaiu","Akag̃","Akaua'i"],
+	answer:1
+},
+{
+	q:"Da a idéia de ALGUNS. ",
+	options:["Ihaig̃niaꞌīn","Iwyriaꞌīn","Iraniaꞌīn","Mit’īn"],
+	answer:2
+},
+{
+	q:"Tem o papel do S na palavra deixando-a no plural.",
+	options:["Ete ","Ti","Ko'i","Ro"],
+	answer:2
+},
+{
+	q:"Transmite a idéia de: (AS VEZES / DE VEZ ENQUANDO/ TALVEZ.",
+	options:["Ase'i ","Asom","Asap","Asuwe"],
+	answer:3
+},
+{
+	q:"Qual a tradução correta da palavra CHUVA?",
+	options:["I'am","Iampy","I'anam","I'aman"],
+	answer:3
+},
+{
+	q:"Qual a tradução correta da palavra Rápido?",
+	options:["Mesup","Mete","Merep","Miariru"],
+	answer:2
+},
+{
+	q:"Qual a tradução correta da palavra Rápido?",
+	options:["Mesup","Mete","Merep","Miariru"],
+	answer:2
+},
+{
+	q:"ATRAPALHADO (pessoa que não consegue as coisas direito,bagunçado) ",
+	options:["I'apysig","Ia'ut","I'apy ","I'aia_aia"],
+	answer:3
+},
+{
+	q:"Tradução coreta para DOIDO: ",
+	options:["Heso","Heso'ok","Hesokpe","Hesy'at"],
+	answer:1
+},
+
+]
+
+
+
+	</script>
+</body>
+</html>
+
+
+
+
+
+<head>
+</head>
+<style>
+	
+	}
+</style>
+
+<br/>
+<br/>
+<br/>
+
+<body>
+<footer align="center"class="cc">&copy;Copyright 2022, WB Info, Maués</footer>
+</body>
+
